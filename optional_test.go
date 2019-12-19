@@ -10,7 +10,7 @@ package unioffice_test
 import (
 	"testing"
 
-	"github.com/unidoc/unioffice"
+	"github.com/linzhoulxyz/unioffice"
 )
 
 func TestFloat32(t *testing.T) {

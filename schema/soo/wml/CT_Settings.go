@@ -13,9 +13,9 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	"github.com/unidoc/unioffice"
-	"github.com/unidoc/unioffice/schema/soo/ofc/math"
-	"github.com/unidoc/unioffice/schema/soo/schemaLibrary"
+	"github.com/linzhoulxyz/unioffice"
+	"github.com/linzhoulxyz/unioffice/schema/soo/ofc/math"
+	"github.com/linzhoulxyz/unioffice/schema/soo/schemaLibrary"
 )
 
 type CT_Settings struct {

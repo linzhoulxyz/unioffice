@@ -6,7 +6,7 @@
 // commercial license can be purchased by contacting sales@baliance.com.
 package document
 
-import "github.com/unidoc/unioffice/schema/soo/wml"
+import "github.com/linzhoulxyz/unioffice/schema/soo/wml"
 
 type OleObjectPath struct {
 	rid  string

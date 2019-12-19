@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/unidoc/unioffice/schema/soo/ofc/sharedTypes"
+	"github.com/linzhoulxyz/unioffice/schema/soo/ofc/sharedTypes"
 )
 
 type CT_Caption struct {

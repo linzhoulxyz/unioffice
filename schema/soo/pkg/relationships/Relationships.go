@@ -12,7 +12,7 @@ package relationships
 import (
 	"encoding/xml"
 
-	"github.com/unidoc/unioffice"
+	"github.com/linzhoulxyz/unioffice"
 )
 
 type Relationships struct {

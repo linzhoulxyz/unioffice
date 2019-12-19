@@ -5,11 +5,11 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/unidoc/unioffice/common"
-	"github.com/unidoc/unioffice/document"
-	"github.com/unidoc/unioffice/measurement"
+	"github.com/linzhoulxyz/unioffice/common"
+	"github.com/linzhoulxyz/unioffice/document"
+	"github.com/linzhoulxyz/unioffice/measurement"
 
-	"github.com/unidoc/unioffice/schema/soo/wml"
+	"github.com/linzhoulxyz/unioffice/schema/soo/wml"
 )
 
 var lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis, lectus dictum feugiat tempus, sem neque finibus enim, sed eleifend sem nunc ac diam. Vestibulum tempus sagittis elementum`
@@ -71,5 +71,5 @@ func main() {
 			inl.SetSize(1*measurement.Inch, 1*measurement.Inch)
 		}
 	}
-	doc.SaveToFile("image.docx")
+	doc.SaveToFile("image2.docx")
 }

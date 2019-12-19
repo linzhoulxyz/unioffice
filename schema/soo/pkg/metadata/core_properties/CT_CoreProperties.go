@@ -13,7 +13,7 @@ import (
 	"encoding/xml"
 	"time"
 
-	"github.com/unidoc/unioffice"
+	"github.com/linzhoulxyz/unioffice"
 )
 
 type CT_CoreProperties struct {

@@ -20,17 +20,17 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/unidoc/unioffice"
-	"github.com/unidoc/unioffice/color"
-	"github.com/unidoc/unioffice/common"
-	"github.com/unidoc/unioffice/common/license"
-	"github.com/unidoc/unioffice/measurement"
-	"github.com/unidoc/unioffice/zippkg"
+	"github.com/linzhoulxyz/unioffice"
+	"github.com/linzhoulxyz/unioffice/color"
+	"github.com/linzhoulxyz/unioffice/common"
+	"github.com/linzhoulxyz/unioffice/common/license"
+	"github.com/linzhoulxyz/unioffice/measurement"
+	"github.com/linzhoulxyz/unioffice/zippkg"
 
-	"github.com/unidoc/unioffice/schema/soo/dml"
-	st "github.com/unidoc/unioffice/schema/soo/ofc/sharedTypes"
-	"github.com/unidoc/unioffice/schema/soo/pkg/relationships"
-	"github.com/unidoc/unioffice/schema/soo/wml"
+	"github.com/linzhoulxyz/unioffice/schema/soo/dml"
+	st "github.com/linzhoulxyz/unioffice/schema/soo/ofc/sharedTypes"
+	"github.com/linzhoulxyz/unioffice/schema/soo/pkg/relationships"
+	"github.com/linzhoulxyz/unioffice/schema/soo/wml"
 )
 
 // Document is a text document that can be written out in the OOXML .docx

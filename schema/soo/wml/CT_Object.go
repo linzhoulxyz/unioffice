@@ -12,8 +12,8 @@ package wml
 import (
 	"encoding/xml"
 	"fmt"
-	"github.com/unidoc/unioffice"
-	"github.com/unidoc/unioffice/schema/soo/ofc/sharedTypes"
+	"github.com/linzhoulxyz/unioffice"
+	"github.com/linzhoulxyz/unioffice/schema/soo/ofc/sharedTypes"
 )
 
 type CT_Object struct {

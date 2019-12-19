@@ -8,9 +8,9 @@
 package spreadsheet
 
 import (
-	"github.com/unidoc/unioffice"
-	"github.com/unidoc/unioffice/measurement"
-	"github.com/unidoc/unioffice/schema/soo/sml"
+	"github.com/linzhoulxyz/unioffice"
+	"github.com/linzhoulxyz/unioffice/measurement"
+	"github.com/linzhoulxyz/unioffice/schema/soo/sml"
 )
 
 // Column represents a column within a sheet. It's only used for formatting

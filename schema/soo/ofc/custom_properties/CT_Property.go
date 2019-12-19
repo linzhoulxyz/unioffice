@@ -15,10 +15,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/unidoc/unioffice/schema/soo/ofc/docPropsVTypes"
-	"github.com/unidoc/unioffice/schema/soo/ofc/sharedTypes"
+	"github.com/linzhoulxyz/unioffice/schema/soo/ofc/docPropsVTypes"
+	"github.com/linzhoulxyz/unioffice/schema/soo/ofc/sharedTypes"
 
-	"github.com/unidoc/unioffice"
+	"github.com/linzhoulxyz/unioffice"
 )
 
 type CT_Property struct {

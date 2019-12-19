@@ -8,7 +8,7 @@
 package chart
 
 import (
-	crt "github.com/unidoc/unioffice/schema/soo/dml/chart"
+	crt "github.com/linzhoulxyz/unioffice/schema/soo/dml/chart"
 )
 
 type ScatterChart struct {
