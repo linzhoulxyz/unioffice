@@ -8,8 +8,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/unidoc/unioffice/spreadsheet"
-	"github.com/unidoc/unioffice/spreadsheet/reference"
+	"github.com/linzhoulxyz/unioffice/spreadsheet"
+	"github.com/linzhoulxyz/unioffice/spreadsheet/reference"
 )
 
 func main() {

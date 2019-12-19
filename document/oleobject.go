@@ -4,7 +4,7 @@
 //================================start
 package document
 
-import "github.com/unidoc/unioffice/schema/soo/wml"
+import "github.com/linzhoulxyz/unioffice/schema/soo/wml"
 
 type OleObjectPath struct {
 	rid  string

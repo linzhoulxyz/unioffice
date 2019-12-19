@@ -5,9 +5,9 @@ import (
 	"log"
 	"math/rand"
 
-	"github.com/unidoc/unioffice/color"
-	"github.com/unidoc/unioffice/schema/soo/sml"
-	"github.com/unidoc/unioffice/spreadsheet"
+	"github.com/linzhoulxyz/unioffice/color"
+	"github.com/linzhoulxyz/unioffice/schema/soo/sml"
+	"github.com/linzhoulxyz/unioffice/spreadsheet"
 )
 
 func main() {

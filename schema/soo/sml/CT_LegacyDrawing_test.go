@@ -13,7 +13,7 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/unidoc/unioffice/schema/soo/sml"
+	"github.com/linzhoulxyz/unioffice/schema/soo/sml"
 )
 
 func TestCT_LegacyDrawingConstructor(t *testing.T) {

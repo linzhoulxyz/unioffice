@@ -7,8 +7,8 @@
 
 package chart
 
-import crt "github.com/unidoc/unioffice/schema/soo/dml/chart"
-import "github.com/unidoc/unioffice"
+import crt "github.com/linzhoulxyz/unioffice/schema/soo/dml/chart"
+import "github.com/linzhoulxyz/unioffice"
 
 // DoughnutChart is a Doughnut chart.
 type DoughnutChart struct {

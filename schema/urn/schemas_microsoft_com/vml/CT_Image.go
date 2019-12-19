@@ -14,11 +14,11 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/unidoc/unioffice"
-	"github.com/unidoc/unioffice/schema/soo/ofc/sharedTypes"
-	"github.com/unidoc/unioffice/schema/urn/schemas_microsoft_com/office/excel"
-	"github.com/unidoc/unioffice/schema/urn/schemas_microsoft_com/office/powerpoint"
-	"github.com/unidoc/unioffice/schema/urn/schemas_microsoft_com/office/word"
+	"github.com/linzhoulxyz/unioffice"
+	"github.com/linzhoulxyz/unioffice/schema/soo/ofc/sharedTypes"
+	"github.com/linzhoulxyz/unioffice/schema/urn/schemas_microsoft_com/office/excel"
+	"github.com/linzhoulxyz/unioffice/schema/urn/schemas_microsoft_com/office/powerpoint"
+	"github.com/linzhoulxyz/unioffice/schema/urn/schemas_microsoft_com/office/word"
 )
 
 type CT_Image struct {

@@ -8,7 +8,7 @@
 package chart
 
 import (
-	crt "github.com/unidoc/unioffice/schema/soo/dml/chart"
+	crt "github.com/linzhoulxyz/unioffice/schema/soo/dml/chart"
 )
 
 // Bar3DChart is a 3D bar chart.

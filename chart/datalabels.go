@@ -8,8 +8,8 @@
 package chart
 
 import (
-	"github.com/unidoc/unioffice"
-	crt "github.com/unidoc/unioffice/schema/soo/dml/chart"
+	"github.com/linzhoulxyz/unioffice"
+	crt "github.com/linzhoulxyz/unioffice/schema/soo/dml/chart"
 )
 
 type DataLabels struct {

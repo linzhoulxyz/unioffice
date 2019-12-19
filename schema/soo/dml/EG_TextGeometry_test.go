@@ -13,7 +13,7 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/unidoc/unioffice/schema/soo/dml"
+	"github.com/linzhoulxyz/unioffice/schema/soo/dml"
 )
 
 func TestEG_TextGeometryConstructor(t *testing.T) {
