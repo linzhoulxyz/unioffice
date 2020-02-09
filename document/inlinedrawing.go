@@ -39,6 +39,24 @@ func (i InlineDrawing) GetImage() (common.ImageRef, bool) {
 	return common.ImageRef{}, false
 }
 
+func (i InlineDrawing) GetWmf() string {
+	any := i.x.Graphic.GraphicData.Any
+	if len(any) > 0 {
+		p, ok := any[0].(*pic.Pic)
+		if ok {
+			if p.BlipFill != nil && p.BlipFill.Blip != nil && p.BlipFill.Blip.EmbedAttr != nil {
+				return i.d.GetWmfByRelID(*p.BlipFill.Blip.EmbedAttr)
+				//for _, img := range i.d.OleObjectWmfPath {
+				//	if img.Rid() == *p.BlipFill.Blip.EmbedAttr {
+				//		return &img
+				//	}
+				//}
+			}
+		}
+	}
+	return ""
+}
+
 // SetSize sets the size of the displayed image on the page.
 func (i InlineDrawing) SetSize(w, h measurement.Distance) {
 	i.x.Extent.CxAttr = int64(float64(w*measurement.Pixel72) / measurement.EMU)

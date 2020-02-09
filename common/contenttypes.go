@@ -29,6 +29,7 @@ func NewContentTypes() ContentTypes {
 	ct.AddDefault("jpeg", "image/jpeg")
 	ct.AddDefault("jpg", "image/jpg")
 	ct.AddDefault("wmf", "image/x-wmf")
+	ct.AddDefault("emf", "image/x-emf")
 
 	ct.AddOverride("/docProps/core.xml", "application/vnd.openxmlformats-package.core-properties+xml")
 	ct.AddOverride("/docProps/app.xml", "application/vnd.openxmlformats-officedocument.extended-properties+xml")

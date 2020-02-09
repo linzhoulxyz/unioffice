@@ -57,8 +57,14 @@ type Document struct {
 	endNotes    *wml.Endnotes
 	footNotes   *wml.Footnotes
 
+	//name: zhexiao(肖哲)
+	//date: 2019-10-09
+	//编写doc数据结构对OLEobject类型的支持，一个公式路径，一个是公式自带的wmf图片路径
+	//================================start
 	OleObjectPaths   []OleObjectPath
 	OleObjectWmfPath []OleObjectWmfPath
+	//================================end
+
 }
 
 // New constructs an empty document that content can be added to.
@@ -477,16 +483,20 @@ func (d *Document) Paragraphs() []Paragraph {
 			for _, p := range c.P {
 				ret = append(ret, Paragraph{d, p})
 			}
-		}
-	}
-
-	for _, t := range d.Tables() {
-		for _, r := range t.Rows() {
-			for _, c := range r.Cells() {
-				ret = append(ret, c.Paragraphs()...)
+			tbl := d.tables(c)
+			if len(tbl) > 0 {
+				//	ret = append(ret, Paragraph{d: d, tbl: tbl})
 			}
 		}
 	}
+
+	//for _, t := range d.Tables() {
+	//	for _, r := range t.Rows() {
+	//		for _, c := range r.Cells() {
+	//			ret = append(ret, c.Paragraphs()...)
+	//		}
+	//	}
+	//}
 	return ret
 }
 
@@ -681,6 +691,7 @@ func (d *Document) AddImage(i common.Image) (common.ImageRef, error) {
 	d.ContentTypes.EnsureDefault("jpeg", "image/jpeg")
 	d.ContentTypes.EnsureDefault("jpg", "image/jpeg")
 	d.ContentTypes.EnsureDefault("wmf", "image/x-wmf")
+	d.ContentTypes.EnsureDefault("emf", "image/x-emf")
 	d.ContentTypes.EnsureDefault(i.Format, "image/"+i.Format)
 	r.SetRelID(rel.X().IdAttr)
 	return r, nil
@@ -694,7 +705,16 @@ func (d *Document) GetImageByRelID(relID string) (common.ImageRef, bool) {
 			return img, true
 		}
 	}
+
 	return common.ImageRef{}, false
+}
+func (d *Document) GetWmfByRelID(relID string) string {
+	for _, wmf := range d.OleObjectWmfPath {
+		if wmf.Rid() == relID {
+			return wmf.Path()
+		}
+	}
+	return ""
 }
 
 // FormFields extracts all of the fields from a document.  They can then be
@@ -868,7 +888,11 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 					return err
 				}
 
-				if strings.Contains(rel.TargetAttr, ".wmf") {
+				//name: zhexiao(肖哲)
+				//date: 2019-10-09
+				//处理公式自带的wmf图片
+				//================================start
+				if strings.Contains(rel.TargetAttr, ".wmf") || strings.Contains(rel.TargetAttr, ".emf") {
 					d.OleObjectWmfPath = append(d.OleObjectWmfPath, OleObjectWmfPath{
 						rid:  rel.IdAttr,
 						path: path,
@@ -876,6 +900,7 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 
 					continue
 				}
+				//================================end
 
 				img, err := common.ImageFromFile(path)
 				if err != nil {
@@ -883,7 +908,13 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 				}
 
 				iref = common.MakeImageRef(img, &d.DocBase, d.docRels)
+
+				//name: zhexiao(肖哲)
+				//date: 2019-10-09
+				//BUG修复：新增图片的relID
+				//================================start
 				iref.SetRelID(rel.IdAttr)
+				//================================end
 
 				d.Images = append(d.Images, iref)
 				files[i] = nil
@@ -897,11 +928,17 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 			rel.TargetAttr = rel.TargetAttr[0:len(rel.TargetAttr)-len(newExt)] + ext
 		}
 
+	//name: zhexiao(肖哲)
+	//date: 2019-10-09
+	//对文档公式数据的解析
+	//================================start
 	case unioffice.OleObjectType:
 		for _, f := range files {
 			if f == nil {
 				continue
 			}
+
+			//fmt.Printf("%#v \n", rel)
 
 			if f.Name == target {
 				path, err := zippkg.ExtractToDiskTmp(f, d.TmpPath)
@@ -915,6 +952,8 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 				})
 			}
 		}
+		//================================end
+
 	default:
 		unioffice.Log("unsupported relationship type: %s tgt: %s", typ, target)
 	}

@@ -94,8 +94,12 @@ func (m *CT_PositiveSize2D) ValidateWithPath(path string) error {
 	return nil
 }
 
-//calculate image width and height
-//convention: https://docs.microsoft.com/en-us/dotnet/api/documentformat.openxml.drawing.wordprocessing.extent?view=openxml-2.8.1
+//name: zhexiao(肖哲)
+//date: 2019-10-15
+//计算图片的宽度和长度
+//在Open XML里使用了English Metric Units(EMUs)来作为度量单位，比如<wp:extent cx="1943100" cy="1689100"/>
+//https://docs.microsoft.com/en-us/dotnet/api/documentformat.openxml.drawing.wordprocessing.extent?view=openxml-2.8.1
+//================================start
 type EmuSize struct {
 	Width  string
 	Height string
@@ -110,9 +114,11 @@ const (
 	pi = 152400
 )
 
-//return width and height by using pt
+//这里只计算返回的单位为PT的大小
 func (m *CT_PositiveSize2D) Size() EmuSize {
 	return EmuSize{
 		Width:  fmt.Sprintf("%spt", strconv.FormatInt(m.CxAttr/pt, 10)),
 		Height: fmt.Sprintf("%spt", strconv.FormatInt(m.CyAttr/pt, 10))}
 }
+
+//================================end

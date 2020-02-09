@@ -8,6 +8,7 @@
 package document
 
 import (
+	"fmt"
 	"github.com/linzhoulxyz/unioffice"
 	"github.com/linzhoulxyz/unioffice/common"
 	"github.com/linzhoulxyz/unioffice/measurement"
@@ -38,6 +39,29 @@ func (a AnchoredDrawing) GetImage() (common.ImageRef, bool) {
 		}
 	}
 	return common.ImageRef{}, false
+}
+
+func (a AnchoredDrawing) GetWmf() string {
+	any := a.x.Graphic.GraphicData.Any
+	if len(any) > 0 {
+		p, ok := any[0].(*pic.Pic)
+		if ok {
+			if p.BlipFill != nil && p.BlipFill.Blip != nil && p.BlipFill.Blip.EmbedAttr != nil {
+				return a.d.GetWmfByRelID(*p.BlipFill.Blip.EmbedAttr)
+				//for _, img := range a.d.OleObjectWmfPath {
+				//	fmt.Println(img.Rid(),img.Path())
+				//	if img.Rid() == *p.BlipFill.Blip.EmbedAttr {
+				//		return &img
+				//	}
+				//}
+			}
+		}
+	}
+	for _, img := range a.d.OleObjectPaths {
+		fmt.Println(img.Rid(), img.Path())
+
+	}
+	return ""
 }
 
 // SetName sets the name of the image, visible in the properties of the image
