@@ -19,6 +19,7 @@ import (
 type EG_MathContent struct {
 	OMathPara *math.OMathPara
 	OMath     *math.OMath
+	Content   []byte
 }
 
 func NewEG_MathContent() *EG_MathContent {

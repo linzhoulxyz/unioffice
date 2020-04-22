@@ -12,7 +12,6 @@ package wml
 import (
 	"encoding/xml"
 	"fmt"
-
 	"github.com/linzhoulxyz/unioffice"
 	"github.com/linzhoulxyz/unioffice/schema/soo/ofc/math"
 )
@@ -532,9 +531,16 @@ lCT_P:
 				tmprunlevelelts := NewEG_RunLevelElts()
 				tmpmathcontent := NewEG_MathContent()
 				tmpmathcontent.OMathPara = math.NewOMathPara()
-				if err := d.DecodeElement(tmpmathcontent.OMathPara, &el); err != nil {
+
+				type Node struct {
+					XMLName xml.Name
+					Content []byte `xml:",innerxml"`
+				}
+				var node Node
+				if err := d.DecodeElement(&node, &el); err != nil { // tmpmathcontent.OMath
 					return err
 				}
+				tmpmathcontent.Content = node.Content
 				m.EG_PContent = append(m.EG_PContent, tmppcontent)
 				tmppcontent.EG_ContentRunContent = append(tmppcontent.EG_ContentRunContent, tmpcontentruncontent)
 				tmpcontentruncontent.EG_RunLevelElts = append(tmpcontentruncontent.EG_RunLevelElts, tmprunlevelelts)
@@ -546,9 +552,16 @@ lCT_P:
 				tmprunlevelelts := NewEG_RunLevelElts()
 				tmpmathcontent := NewEG_MathContent()
 				tmpmathcontent.OMath = math.NewOMath()
-				if err := d.DecodeElement(tmpmathcontent.OMath, &el); err != nil {
+
+				type Node struct {
+					XMLName xml.Name
+					Content []byte `xml:",innerxml"`
+				}
+				var node Node
+				if err := d.DecodeElement(&node, &el); err != nil { // tmpmathcontent.OMath
 					return err
 				}
+				tmpmathcontent.Content = node.Content
 				m.EG_PContent = append(m.EG_PContent, tmppcontent)
 				tmppcontent.EG_ContentRunContent = append(tmppcontent.EG_ContentRunContent, tmpcontentruncontent)
 				tmpcontentruncontent.EG_RunLevelElts = append(tmpcontentruncontent.EG_RunLevelElts, tmprunlevelelts)
