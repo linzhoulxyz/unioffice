@@ -373,6 +373,18 @@ lCT_R:
 					return err
 				}
 				m.EG_RunInnerContent = append(m.EG_RunInnerContent, tmpruninnercontent)
+			case xml.Name{Space: "http://schemas.openxmlformats.org/markup-compatibility/2006", Local: "AlternateContent"}:
+				tmpruninnercontent := NewEG_RunInnerContent()
+				tmpruninnercontent.AlternateContent = NewCT_AlternateContent()
+				if err := d.DecodeElement(tmpruninnercontent.AlternateContent, &el); err != nil {
+					return err
+				}
+				if tmpruninnercontent.AlternateContent.Choice != nil {
+					if tmpruninnercontent.AlternateContent.Choice.Drawing != nil {
+						tmpruninnercontent.Drawing = tmpruninnercontent.AlternateContent.Choice.Drawing
+					}
+				}
+				m.EG_RunInnerContent = append(m.EG_RunInnerContent, tmpruninnercontent)
 			default:
 				any := &unioffice.XSDAny{}
 				if err := d.DecodeElement(any, &el); err != nil {

@@ -18,6 +18,7 @@ import (
 
 type CT_GraphicalObjectData struct {
 	UriAttr string
+	Wpg     *CT_Wgp
 	Any     []unioffice.Any
 }
 
@@ -60,6 +61,11 @@ lCT_GraphicalObjectData:
 		switch el := tok.(type) {
 		case xml.StartElement:
 			switch el.Name {
+			case xml.Name{Space: "http://schemas.microsoft.com/office/word/2010/wordprocessingGroup", Local: "wgp"}:
+				m.Wpg = NewCT_Wpg()
+				if err := d.DecodeElement(m.Wpg, &el); err != nil {
+					return err
+				}
 			default:
 				if anyEl, err := unioffice.CreateElement(el); err != nil {
 					return err

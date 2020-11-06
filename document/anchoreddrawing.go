@@ -37,6 +37,18 @@ func (a AnchoredDrawing) GetImage() (common.ImageRef, bool) {
 				return a.d.GetImageByRelID(*p.BlipFill.Blip.EmbedAttr)
 			}
 		}
+
+	}
+
+	if wgp := a.x.Graphic.GraphicData.Wpg; wgp != nil && len(wgp.Any) > 0 {
+		for id, _ := range wgp.Any {
+			p, ok := wgp.Any[id].(*pic.Pic)
+			if ok {
+				if p.BlipFill != nil && p.BlipFill.Blip != nil && p.BlipFill.Blip.EmbedAttr != nil {
+					return a.d.GetImageByRelID(*p.BlipFill.Blip.EmbedAttr)
+				}
+			}
+		}
 	}
 	return common.ImageRef{}, false
 }
@@ -54,6 +66,18 @@ func (a AnchoredDrawing) GetWmf() string {
 				//		return &img
 				//	}
 				//}
+			}
+		}
+
+	}
+
+	if wgp := a.x.Graphic.GraphicData.Wpg; wgp != nil && len(wgp.Any) > 0 {
+		for id, _ := range wgp.Any {
+			p, ok := wgp.Any[id].(*pic.Pic)
+			if ok {
+				if p.BlipFill != nil && p.BlipFill.Blip != nil && p.BlipFill.Blip.EmbedAttr != nil {
+					return a.d.GetWmfByRelID(*p.BlipFill.Blip.EmbedAttr)
+				}
 			}
 		}
 	}

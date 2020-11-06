@@ -82,6 +82,8 @@ type EG_RunInnerContent struct {
 	Ptab *CT_PTab
 	// Position of Last Calculated Page Break
 	LastRenderedPageBreak *CT_Empty
+
+	AlternateContent *CT_AlternateContent
 }
 
 func NewEG_RunInnerContent() *EG_RunInnerContent {
