@@ -877,6 +877,8 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 
 	case unioffice.ImageType, unioffice.ImageTypeStrict:
 		var iref common.ImageRef
+
+		ok := false
 		for i, f := range files {
 			if f == nil {
 				continue
@@ -897,6 +899,7 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 						rid:  rel.IdAttr,
 						path: path,
 					})
+					ok = true
 
 					continue
 				}
@@ -918,14 +921,17 @@ func (d *Document) onNewRelationship(decMap *zippkg.DecodeMap, target, typ strin
 
 				d.Images = append(d.Images, iref)
 				files[i] = nil
+				ok = true
 			}
 		}
 
-		ext := "." + strings.ToLower(iref.Format())
-		rel.TargetAttr = unioffice.RelativeFilename(dt, src.Typ, typ, len(d.Images))
-		// ensure we don't change image formats
-		if newExt := filepath.Ext(rel.TargetAttr); newExt != ext {
-			rel.TargetAttr = rel.TargetAttr[0:len(rel.TargetAttr)-len(newExt)] + ext
+		if ok {
+			ext := "." + strings.ToLower(iref.Format())
+			rel.TargetAttr = unioffice.RelativeFilename(dt, src.Typ, typ, len(d.Images))
+			// ensure we don't change image formats
+			if newExt := filepath.Ext(rel.TargetAttr); newExt != ext {
+				rel.TargetAttr = rel.TargetAttr[0:len(rel.TargetAttr)-len(newExt)] + ext
+			}
 		}
 
 	//name: zhexiao(肖哲)
@@ -1083,4 +1089,8 @@ func (d Document) Bookmarks() []Bookmark {
 		}
 	}
 	return ret
+}
+
+func (d Document) DocRels() common.Relationships {
+	return d.docRels
 }

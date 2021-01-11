@@ -17,6 +17,7 @@ import (
 
 type CT_Picture struct {
 	// Embedded Video
+	Shape *CT_Shape
 	Movie *CT_Rel
 	// Floating Embedded Control
 	Control *CT_Control
@@ -64,6 +65,12 @@ lCT_Picture:
 				if err := d.DecodeElement(m.Control, &el); err != nil {
 					return err
 				}
+			case xml.Name{Space: "urn:schemas-microsoft-com:vml", Local: "shape"}:
+				m.Shape = NewCT_Shape()
+				if err := d.DecodeElement(&m.Shape, &el); err != nil {
+					return err
+				}
+
 			default:
 				unioffice.Log("skipping unsupported element on CT_Picture %v", el.Name)
 				if err := d.Skip(); err != nil {
